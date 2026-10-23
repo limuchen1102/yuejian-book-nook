@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f6f1e8" />
+    <meta name="description" content="阅间书房：发现下一本值得慢慢读完的书。" />
+    <title>阅间书房 · Book Nook</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Serif+SC:wght@500;600;700;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="grain" aria-hidden="true"></div>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="回到首页">
+        <span class="brand-mark">阅</span>
+        <span><strong>阅间</strong><small>BOOK NOOK</small></span>
+      </a>
+      <nav class="main-nav" aria-label="主导航">
+        <a class="active" href="#discover">发现</a>
+        <a href="#shelf">我的书架 <span id="shelf-count" class="nav-count">0</span></a>
+        <a href="#about">关于</a>
+      </nav>
+      <button id="theme-toggle" class="icon-button" type="button" aria-label="切换配色">☼</button>
+    </header>
+
+    <main id="top">
+      <section class="hero" id="discover">
+        <div class="hero-copy">
+          <p class="eyebrow">WEEKLY READING CLUB · 2026</p>
+          <h1>给思想留一盏灯，<em>给生活留一页。</em></h1>
+          <p class="hero-description">在快节奏之外，找到值得慢慢读完的故事、观点与灵感。</p>
+          <div class="hero-actions">
+            <a class="button button-dark" href="#catalog">开始探索 <span>↗</span></a>
+            <button class="text-button" id="random-book" type="button">随便逛逛 <span>✦</span></button>
+          </div>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="sun"></div><div class="arch"></div><div class="arch-shadow"></div>
+          <div class="plant plant-one"><i></i><i></i><i></i><b></b></div>
+          <div class="plant plant-two"><i></i><i></i><b></b></div>
+          <div class="floating-note">slow<br />reading<br /><span>✦</span></div>
+        </div>
+      </section>
+
+      <section class="quote-strip">
+        <span class="quote-mark">“</span>
+        <p>阅读不是逃离生活，而是重新学会观看生活。</p>
+        <span class="quote-author">— 梭罗</span>
+      </section>
+
+      <section class="catalog-section" id="catalog">
+        <div class="section-heading">
+          <div><p class="eyebrow">CURATED FOR YOU</p><h2>本周书单</h2></div>
+          <p class="section-intro">从一页开始，走进一个新的世界。<br />我们挑选了几本适合这个季节的书。</p>
+        </div>
+        <div class="toolbar">
+          <div class="search-box"><span>⌕</span><input id="search-input" type="search" placeholder="搜索书名、作者或关键词" /></div>
+          <div class="filters" id="filters" role="group" aria-label="书籍分类">
+            <button class="filter active" type="button" data-category="全部">全部</button>
+            <button class="filter" type="button" data-category="文学">文学</button>
+            <button class="filter" type="button" data-category="思想">思想</button>
+            <button class="filter" type="button" data-category="生活">生活</button>
+          </div>
+        </div>
+        <div id="book-grid" class="book-grid" aria-live="polite"></div>
+        <p id="empty-state" class="empty-state" hidden>没有找到匹配的书。试试其他关键词？</p>
+      </section>
+
+      <section class="shelf-section" id="shelf">
+        <div class="shelf-card">
+          <div><p class="eyebrow">YOUR QUIET CORNER</p><h2>我的书架</h2><p>把想读的书留在这里，等一个合适的下午。</p></div>
+          <div class="shelf-stat"><strong id="shelf-stat-count">0</strong><span>本收藏</span></div>
+        </div>
+        <div id="shelf-list" class="shelf-list"></div>
+      </section>
+
+      <section class="about-section" id="about">
+        <div class="about-line"></div><p>阅间书房是一个用于学习产品设计、前端开发与 Supabase 数据库的测试项目。<br />愿你今天也能遇到一本好书。</p><div class="about-line"></div>
+      </section>
+    </main>
+
+    <footer class="site-footer"><span>阅间书房 / BOOK NOOK</span><span>MADE FOR SLOW DAYS · <span id="year"></span></span></footer>
+
+    <dialog id="book-dialog" class="book-dialog">
+      <button class="dialog-close" id="dialog-close" type="button" aria-label="关闭">×</button>
+      <div id="dialog-content"></div>
+    </dialog>
+    <div id="toast" class="toast" role="status"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase-config.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
